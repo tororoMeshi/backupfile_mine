@@ -1,0 +1,8 @@
+[Unit]
+Description=Scheduled Reboot
+After=minecraft.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/systemctl stop minecraft 
+ExecStart=/bin/systemctl --force reboot
