@@ -1,0 +1,10 @@
+[Unit]
+Description=schedule reboot
+
+[Timer]
+Unit=reboot.service
+OnCalendar=*-*-* 5:00:00
+
+[Install]
+WantedBy=timers.target
+

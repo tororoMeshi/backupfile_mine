@@ -1,0 +1,36 @@
+[Unit]
+# A human readable name for the unit.
+Description=Minecraft Server Service
+#When the network comes online, this unit will be started. Similarly, when the system is shut down, the order will be taken into account so that the network will be shut down after this unit is shut down.
+After=network-online.target
+
+ConditionPathExists=/home/ubuntu/conf/
+
+[Service]
+# Type= : Configures the process start-up type for this service unit.
+# Type=forking : it is expected that the process configured with ExecStart= will call fork() as part of its start-up.
+#Type=forking
+Type=simple
+
+User=ubuntu
+
+# Where you placed the script.
+WorkingDirectory=/home/ubuntu/conf/
+#WorkingDirectory=/home/ubuntu/
+
+# Location of the startup script
+#ExecStart=/home/ubuntu/start.sh
+ExecStart=/home/ubuntu/conf/start.sh
+
+# Location of the stop script
+#ExecStop=/opt/minecraft/server/stop.sh
+
+# Whenever the server terminates by itself, it will automatically restart.
+Restart=always
+
+TimeoutSec=1000
+
+[Install]
+# It tells systemd to pull in the unit when starting multi-user.target.
+WantedBy=multi-user.target
+
